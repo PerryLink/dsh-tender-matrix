@@ -1,0 +1,201 @@
+# 评标因素评分矩阵核对 规则库
+#
+# 规则数据与代码分离：替换本文件即可切换规则集版本，无需改动 TypeScript。
+#
+# 条款引用纪律（由 shared/ruleset.ts 强制校验）：
+#   - 每条规则必须写全 document / number / clause / excerpt / kind / source，
+#     且 excerpt 必须是逐字摘录，不得改写。
+#   - kind: direct                       条款直接规定了所检查的要求
+#   - kind: derived-from-principle       条款未直接规定，仅能由原则性条款推论（severity 最多 warn）
+#   - kind: institutional-configuration 阈值出自本机构配置（severity 最多 info）
+#
+# ⚠️⚠️ 本规则库的诚实说明：**excerpt 一律不是引文。**
+#   本插件核对的是"评标因素评分矩阵"的**算术自洽**：
+#     每项得分是否不超过该项分值上限、各项得分合计是否等于汇总之和、
+#     评分依据是否填写、因素序号是否重复、矩阵是否写明项目与评标办法。
+#   其规范载体是《中华人民共和国招标投标法》及其实施条例、以及**各项目招标文件里的评标办法**。
+#   **核查未取得这些文件的逐字条文**，因此本规则库**不伪造任何"原文"**：
+#   每条规则的 excerpt 都写明"该条文本次未取得"，依据状态放在 note 里如实说明；
+#   kind 一律降为 derived-from-principle（封顶 warn）或 institutional-configuration（封顶 info）。
+#   **取得条文后必须做两件事**：把 excerpt 换成真正的逐字摘录，把 kind 升为 direct。
+#
+# ⚠️⚠️ 另一条**必须保留**的边界：**本插件绝不判定评分是否恰当、
+#   评标是否公平、投标人是否应当中标**。
+#   评分是评标委员会依法独立作出的判断；**分值设置与评分标准由招标文件的评标办法规定**，
+#   各项目差别很大（综合评估法、经评审的最低投标价法、评分项与权重各不相同）。
+#   → 因此本插件只核对**矩阵自身的算术与齐备**：
+#     单项得分是否在分值上限内、合计是否等于各项之和、分值是否可解析、
+#     评分依据是否填写、因素序号是否重复、是否残留模板占位符。
+#   → **分值上限合计（maxScoreTotal）出厂为空**，未配置即进 skipped——
+#     总分上限由招标文件的评标办法规定，**本插件不硬编码任何分值体系**。
+
+plugin: dsh-tender-matrix
+version: "2026.1"
+
+rules:
+  - id: TM-001
+    title: 评分矩阵应写明项目与评标办法
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第三十七条——评标委员会成员人数为五人以上单数，技术、经济等方面的专家不得少于成员总数的三分之二
+      excerpt: 评标由招标人依法组建的评标委员会负责。依法必须进行招标的项目，其评标委员会由招标人的代表和有关技术、经济等方面的专家组成，成员人数为五人以上单数，其中技术、经济等方面的专家不得少于成员总数的三分之二。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: headerPresence
+        fields: [project, method]
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第三十七条规范评标委员会的组成与保密，未要求评分矩阵写明项目与评标办法——那两栏是结论可追溯性的前提。
+      评分矩阵若不写明项目与所依据的评标办法，各项分值就失去了约束来源——
+      无法判断这套评分项与分值是否与招标文件一致。本次未取得明文条号，故封顶 warn。
+      配置项 project 对应材料顶层的项目名称，method 对应评标办法。
+      若本机构表式不含"评标办法"栏，请把 fields 改为 [project]。
+
+  - id: TM-002
+    title: 单项得分不应超过该项分值上限
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十条第一款——评标委员会应当按照招标文件确定的评标标准和方法对投标文件进行评审和比较
+      excerpt: 评标委员会应当按照招标文件确定的评标标准和方法，对投标文件进行评审和比较；设有标底的，应当参考标底。评标委员会完成评标后，应当向招标人提出书面评标报告，并推荐合格的中标候选人。
+      kind: direct
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: fieldComparison
+        leftField: bidderA
+        rightField: maxScore
+        relation: lte
+        fix: 核对评分是否抄错；本条只核对是否超出分值上限，不判断评分是否恰当
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ✅ kind 已升为 direct（2026-10-07）：第四十条第一款逐字要求评标委员会「按照招标文件确定的评标标准和方法」评审——单项得分超过该项分值上限即脱离该标准。
+      **单项得分不得超过该项分值上限**是评分矩阵的构造前提：
+      超出上限的评分在算术上就不成立，也无法与其他投标人可比。本次未取得明文条号，故封顶 warn。
+      本条核对 A 列（`leftField`）；核对 B、C 列时把 leftField 改成 bidderB、bidderC 各加一条即可，
+      或在一次调用中用 rules 参数覆盖。
+      本条**只做数值比较，不判断评分是否恰当、是否畸高畸低**——
+      那是评标委员会依法独立作出的判断。
+
+  - id: TM-003
+    title: 各项分值合计应与本机构配置的总分上限一致
+    severity: info
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十条第一款——评标委员会应当按照招标文件确定的评标标准和方法对投标文件进行评审和比较
+      excerpt: 评标委员会应当按照招标文件确定的评标标准和方法，对投标文件进行评审和比较；设有标底的，应当参考标底。评标委员会完成评标后，应当向招标人提出书面评标报告，并推荐合格的中标候选人。
+      kind: institutional-configuration
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: sumToConstant
+        field: maxScore
+        target: 0
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 institutional-configuration：第四十条只要求按既定标准评标，分值合计的上限属本机构口径。
+      target 出厂为 0，表示**未配置**，本条进 skipped。
+      依据说明：**总分上限由招标文件的评标办法规定**，常见 100 分，
+      但也有 120 分制、分项加权制等多种做法，**本插件不硬编码任何分值体系**。
+      配置示例：target: 100。
+      本条命中只表示"各项分值之和不等于你配置的上限"，
+      **不代表分值设置不合规**——是否合规要看招标文件的评标办法。
+
+  - id: TM-004
+    title: 各项得分合计应等于汇总栏
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十一条——中标人的投标应当最大限度满足综合评价标准，或满足实质性要求且经评审的投标价格最低
+      excerpt: 中标人的投标应当符合下列条件之一：（一）能够最大限度地满足招标文件中规定的各项综合评价标准；（二）能够满足招标文件的实质性要求，并且经评审的投标价格最低；但是投标价格低于成本的除外。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: sumToConstant
+        field: bidderA
+        target: 0
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第四十一条规定中标人投标应当符合的条件，未规定评分表的算术自洽。
+      本条核对 A 列各项得分之和是否等于本机构配置的该投标人合计（target）。
+      合计是**加出来的**，属纯算术核对；本次未取得明文条号，故封顶 warn。
+      target 出厂为 0 表示未配置，本条进 skipped——因为"合计是多少"取决于本项目的分值体系，
+      本插件不替使用方假定。
+      核对 B、C 列时把 field 改成 bidderB、bidderC 并配上各自的 target 即可。
+      本条**只做加总核对，不判断评标结果是否正确**。
+
+  - id: TM-005
+    title: 评分依据应填写
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十条第一款末句——评标委员会完成评标后应当提出书面评标报告并推荐合格的中标候选人
+      excerpt: 评标委员会应当按照招标文件确定的评标标准和方法，对投标文件进行评审和比较；设有标底的，应当参考标底。评标委员会完成评标后，应当向招标人提出书面评标报告，并推荐合格的中标候选人。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: presence
+        field: basis
+        fix: 补填评分依据；本条只核对是否填写，不判断依据是否成立
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第四十条要求提出书面评标报告，未要求评分表填写依据。
+      评分若没有依据记录，得分就无法复核，也无法向投标人说明理由。
+      本次未取得明文条号，故封顶 warn。
+      本条只核对依据栏是否填写，**不判断该依据是否成立、是否恰当**。
+
+  - id: TM-006
+    title: 评审因素序号不应在矩阵内重复
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十三条——在确定中标人前，招标人不得与投标人就投标价格、投标方案等实质性内容进行谈判
+      excerpt: 在确定中标人前，招标人不得与投标人就投标价格、投标方案等实质性内容进行谈判。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: unique
+        field: seq
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第四十三条禁止确定中标人前与投标人实质性谈判，未规定评审因素序号不得重复。
+      因素序号唯一是"每个评分项只被登记一次"的**前提条件**：序号重复会让人无法判断
+      到底是重复登记，还是两个评分项被错编成同一号，分值合计也会因此出错。
+      本次未取得明文条号，故封顶 warn。比较时忽略空白字符。
+
+  - id: TM-007
+    title: 评分依据与备注不应残留未替换的占位符
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第四十二条——评标委员会经评审认为所有投标都不符合招标文件要求的，可以否决所有投标
+      excerpt: 评标委员会应当按照招标文件确定的评标标准和方法，对投标文件进行评审和比较；设有标底的，应当参考标底。评标委员会完成评标后，应当向招标人提出书面评标报告，并推荐合格的中标候选人。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: containsAny
+        field: basis
+        terms: ['【', '】', '{{', '}}', 'XXX', 'xxx', '待填', '待补充', 'TBD', 'todo', '示例']
+        fix: 评分依据应填写实际内容；残留占位符说明矩阵是照模板抄的
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第四十条未就占位符作任何规定。
+      评分矩阵常由模板复制而来，依据栏留下【】、XXX、待填、TBD 之类占位符时，
+      会让人误以为已经记录了评分理由——**这是评分类工具最危险的失效方式**。
+      本次未取得明文条号，故封顶 warn。terms 可按本机构模板调整。
+
+disabled: []

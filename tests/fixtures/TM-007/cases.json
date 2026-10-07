@@ -1,0 +1,21 @@
+{
+  "ruleId": "TM-007",
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "TM-007-compliant.json",
+      "expect": {
+        "ruleId": "TM-007",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "TM-007-unsafe.json",
+      "expect": {
+        "ruleId": "TM-007",
+        "count": 1
+      }
+    }
+  ]
+}

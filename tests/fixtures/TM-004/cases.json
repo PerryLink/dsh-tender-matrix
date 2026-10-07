@@ -1,0 +1,26 @@
+{
+  "ruleId": "TM-004",
+  "configure": {
+    "TM-004": {
+      "target": 26
+    }
+  },
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "TM-004-compliant.json",
+      "expect": {
+        "ruleId": "TM-004",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "TM-004-unsafe.json",
+      "expect": {
+        "ruleId": "TM-004",
+        "count": 1
+      }
+    }
+  ]
+}
