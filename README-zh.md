@@ -46,8 +46,7 @@ judgement, and the weights and criteria are the tender document's.**
 ## Install
 
 ```sh
-pnpm pack
-dsh plugin --profile <name> add ./*.tgz
+dsh plugin --profile <name> add dsh-tender-matrix
 dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 ```
 
