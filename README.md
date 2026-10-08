@@ -66,13 +66,12 @@ evaluation factor — applies a versioned rule pack, and returns a report.
 | Rule | Check | Severity | Basis kind |
 |---|---|---|---|
 | `TM-001` | the matrix names its project and method | warn | principle |
-| `TM-002` | no score exceeds its item's maximum | warn | principle |
+| `TM-002` | no score exceeds its item's maximum | warn | direct |
 | `TM-003` | the maximum scores total your configured figure (off by default) | info | local |
 | `TM-004` | a bidder's scores total your configured figure (off by default) | warn | principle |
 | `TM-005` | every score records its basis | warn | principle |
 | `TM-006` | factor numbers are unique | warn | principle |
 | `TM-007` | the basis column holds no unreplaced placeholder | warn | principle |
-
 ## Install
 
 ```sh
