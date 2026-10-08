@@ -1,4 +1,23 @@
-# dsh-tender-matrix
+# dsh-tender-matrix — Verificación aritmética de la matriz de puntuación de los factores de evaluación
+
+`dsh-tender-matrix` lee una matriz de puntuación de los factores de evaluación —la cabecera del expediente más una fila por factor de evaluación— y comprueba la aritmética y la integridad de esa propia matriz: que declare su proyecto y su método de evaluación, que ninguna puntuación supere el máximo de su partida, que los máximos de las partidas sumen la cifra que usted configure, que las puntuaciones de un licitador sumen la cifra que usted configure, que cada puntuación registre su fundamento, que los números de factor sean únicos y que no quede ningún marcador de plantilla sin sustituir en la columna del fundamento.
+
+## Qué responde
+
+| Usted pregunta | Qué responde |
+|---|---|
+| Todas las casillas de la matriz están rellenas, así que ¿por qué las dos reglas de totales devuelven `skipped`? | Porque las dos vienen sin configurar: `TM-003` compara la suma de la columna `maxScore` con su `target`, y `TM-004` suma las puntuaciones `bidderA` de un licitador contra su `target`; ambas traen `target: 0`, es decir «sin configurar», así que cada una se informa en `skipped` en lugar de pasar en silencio hasta que usted escriba la cifra que indica su pliego. Una vez configurada, una coincidencia solo significa que la suma difiere de la cifra que usted fijó, no que la escala de puntuación sea improcedente; `TM-004` es una suma pura y deliberadamente no está conectada a ninguna columna de total por licitador. |
+| Una partida tiene un máximo de 100 pero una casilla dice 105, y en otra fila la casilla de puntuación dice `优良`. | `TM-002` informa de ambos casos. Compara `bidderA` con `maxScore` partida por partida e informa de la fila cuya puntuación supera el máximo de esa partida; cuando las dos casillas están rellenas pero ninguna se puede leer como número o fecha, esa fila se informa como no comparable en lugar de omitirse, mientras que una fila a la que le falta una de las dos no se compara en absoluto. Es solo una comparación numérica y nunca juzga si la puntuación es adecuada; lee la columna A por defecto, así que cubra B y C con una regla adicional o con una anulación de `leftField`. |
+| Algunas filas dejan vacía la columna del fundamento de la puntuación. ¿Se informa de eso? | Sí. `TM-005` exige que la casilla `basis` esté rellena en todas las filas a las que el material da esa columna, e informa de cada una que esté en blanco. Solo comprueba que haya algo escrito, no si el fundamento registrado se sostiene, es adecuado o corresponde a la puntuación. Si la matriz no trae ninguna columna `basis`, la regla informa de que no se aplica en lugar de pasar en silencio. |
+| El mismo número de factor aparece en dos filas de la matriz. ¿Qué se informa? | `TM-006` informa del número repetido, comparando sin tener en cuenta los espacios. La unicidad es todo lo que establece, y importa porque una repetición hace que el total de máximos salga mal: o el mismo factor se registró dos veces, o dos factores se numeraron por error como uno solo. No decide cuál de las dos filas es la correcta. |
+| La casilla del fundamento todavía dice `【】` o `TBD`, porque la matriz se copió de una plantilla. ¿Se detecta? | `TM-007` informa de la casilla `basis` que aún contiene alguno de sus términos de plantilla —`【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo`, `示例`—, una lista ajustable a su propia plantilla. El fallo que persigue es que un marcador se lea como un motivo ya registrado. Su título también menciona las observaciones, pero la comprobación lee solo la columna `basis` y nunca juzga la calidad del fundamento. |
+| La cabecera no dice a qué proyecto pertenece esta matriz ni qué método de evaluación sigue. | `TM-001` exige que la cabecera del material traiga `project` y `method` e informa del que falte; solo comprueba que la cabecera los declare, no que concuerden con el pliego. Si el formulario de su institución no tiene columna de método de evaluación, ponga los `fields` de esa regla en `[project]` para que deje de pedir una columna que su formulario nunca trae. |
+
+## Normas que sigue
+
+| Documento | Número | Reglas que lo citan |
+|---|---|---|
+| 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | TM-001, TM-002, TM-003, TM-004, TM-005, TM-006, TM-007 |
 
 **Boundary:** this plugin checks an **评标因素评分矩阵** for arithmetic — that the matrix names its project and
 evaluation method, that no single score exceeds its item's maximum, that the maximum scores total what you

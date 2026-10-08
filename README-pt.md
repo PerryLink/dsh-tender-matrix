@@ -1,4 +1,23 @@
-# dsh-tender-matrix
+# dsh-tender-matrix — Verificação aritmética da matriz de pontuação dos fatores de avaliação
+
+`dsh-tender-matrix` lê uma matriz de pontuação dos fatores de avaliação —o cabeçalho do processo mais uma linha por fator de avaliação— e verifica a aritmética e a completude dessa própria matriz: se declara o seu projeto e o seu método de avaliação, se nenhuma pontuação excede o máximo da sua rubrica, se os máximos das rubricas somam o valor que você configurar, se as pontuações de um concorrente somam o valor que você configurar, se cada pontuação regista o seu fundamento, se os números de fator são únicos e se não resta nenhum marcador de modelo por substituir na coluna do fundamento.
+
+## O que ele responde
+
+| Você pergunta | O que ele responde |
+|---|---|
+| Todas as células da matriz estão preenchidas, por que motivo as duas regras de totais voltam como `skipped`? | Porque as duas vêm por configurar: `TM-003` compara a soma da coluna `maxScore` com o seu `target`, e `TM-004` soma as pontuações `bidderA` de um concorrente contra o seu `target`; ambas trazem `target: 0`, ou seja «não configurado», pelo que cada uma se reporta em `skipped` em vez de passar em silêncio até você inscrever o valor indicado no documento do concurso. Depois de configurada, uma ocorrência significa apenas que a soma difere do valor que você fixou, não que a escala de pontuação seja irregular; `TM-004` é uma soma pura e deliberadamente não está ligada a nenhuma coluna de total por concorrente. |
+| Uma rubrica tem o máximo de 100 mas uma célula diz 105, e noutra linha a célula da pontuação diz `优良`. | `TM-002` reporta ambos os casos. Compara `bidderA` com `maxScore` rubrica a rubrica e reporta a linha cuja pontuação excede o máximo dessa rubrica; quando as duas células estão preenchidas mas nenhuma pode ser lida como número ou data, essa linha é reportada como não comparável em vez de ser omitida, ao passo que uma linha à qual falte uma das duas não é comparada de todo. É apenas uma comparação numérica e nunca julga se a pontuação é adequada; lê a coluna A por defeito, por isso cubra B e C com uma regra adicional ou com uma substituição de `leftField`. |
+| Algumas linhas deixam vazia a coluna do fundamento da pontuação. Isso é reportado? | Sim. `TM-005` exige que a célula `basis` esteja preenchida em todas as linhas às quais o material dá essa coluna, e reporta cada uma que esteja em branco. Verifica apenas que algo está escrito, não se o fundamento registado se sustenta, é adequado ou corresponde à pontuação. Se a matriz não tiver nenhuma coluna `basis`, a regra reporta que não se aplica em vez de passar em silêncio. |
+| O mesmo número de fator aparece em duas linhas da matriz. O que é reportado? | `TM-006` reporta o número repetido, comparando sem considerar os espaços. A unicidade é tudo o que estabelece, e importa porque uma repetição faz com que o total dos máximos saia errado: ou o mesmo fator foi registado duas vezes, ou dois fatores foram numerados por erro como um só. Não decide qual das duas linhas é a correta. |
+| A célula do fundamento ainda diz `【】` ou `TBD`, porque a matriz foi copiada de um modelo. Isso é detetado? | `TM-007` reporta a célula `basis` que ainda contém algum dos seus termos de modelo —`【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo`, `示例`—, uma lista ajustável ao seu próprio modelo. A falha que visa é um marcador ser lido como um motivo já registado. O seu título também menciona as observações, mas a verificação lê apenas a coluna `basis` e nunca julga a qualidade do fundamento. |
+| O cabeçalho não diz a que projeto pertence esta matriz nem que método de avaliação segue. | `TM-001` exige que o cabeçalho do material traga `project` e `method` e reporta o que faltar; verifica apenas que o cabeçalho os declara, não que concordem com o documento do concurso. Se o formulário da sua instituição não tiver coluna de método de avaliação, ponha os `fields` dessa regra em `[project]` para deixar de pedir uma coluna que o seu formulário nunca traz. |
+
+## Normas que segue
+
+| Documento | Número | Regras que o citam |
+|---|---|---|
+| 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | TM-001, TM-002, TM-003, TM-004, TM-005, TM-006, TM-007 |
 
 **Boundary:** this plugin checks an **评标因素评分矩阵** for arithmetic — that the matrix names its project and
 evaluation method, that no single score exceeds its item's maximum, that the maximum scores total what you

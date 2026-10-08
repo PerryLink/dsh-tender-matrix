@@ -1,4 +1,23 @@
-# dsh-tender-matrix
+# dsh-tender-matrix — Tender evaluation-factor scoring matrix arithmetic self-consistency check
+
+`dsh-tender-matrix` reads one 评标因素评分矩阵 — a tender's evaluation-factor scoring matrix: the package header plus one row per evaluation factor — and checks that matrix's own arithmetic and completeness: that it names its project and its evaluation method, that no single score exceeds that item's maximum, that the item maximum scores total the figure you configure, that one bidder's scores total the figure you configure, that every score records its basis, that factor numbers are unique, and that no unreplaced placeholder survives in the basis column.
+
+## What it answers
+
+| You ask | What it answers |
+|---|---|
+| Every cell of the matrix is filled in, so why do both total checks report `skipped`? | Because both totals ship unconfigured: `TM-003` compares the sum of the `maxScore` column against its `target`, and `TM-004` adds up one bidder's `bidderA` scores against its `target`; both carry `target: 0`, meaning “not configured”, so each reports itself in `skipped` rather than passing quietly until you enter the figure your tender document states. Once configured, a hit means only that the sum differs from the figure you set — not that the score scale is non-compliant; `TM-004` is pure addition and is deliberately not wired to any per-bidder total column. |
+| One item's maximum is 100 but a cell says 105, and another row's score cell reads `优良`. | `TM-002` reports both. It compares `bidderA` with `maxScore` item by item and reports a row whose score is above that item's maximum; when both cells are filled but neither can be read as a number or a date, that row is reported as uncomparable instead of being passed over, while a row missing one of the two is not compared at all. It is a numeric comparison only and never judges whether a score is appropriate, and it reads column A by default — cover B and C with an extra rule or a `leftField` override. |
+| Some rows leave the scoring-basis column empty. Is that reported? | Yes. `TM-005` requires the `basis` cell to be filled on every row the material gives that column, and reports each blank one. It checks only that something is written there — not whether the recorded basis holds, is appropriate, or matches the score. If the matrix carries no `basis` column at all, the rule reports that it does not apply rather than passing silently. |
+| The same factor number appears on two rows of the matrix. What is reported? | `TM-006` reports the repeated number, comparing with whitespace ignored. Uniqueness is all it establishes, and it matters because a repeat makes the maximum-score total come out wrong: either the same factor was registered twice or two factors were mis-numbered as one. It does not decide which of the two rows is the correct one. |
+| The basis cell still reads `【】` or `TBD`, because the matrix was copied from a template. Is that caught? | `TM-007` reports a `basis` cell that still contains any of its placeholder terms — `【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo`, `示例` — a list you can adjust to your own template. The failure it targets is a placeholder being read as a reason already recorded. Its title also names remarks, but the check reads the `basis` column only, and it never judges the quality of the basis itself. |
+| The header does not say which project this matrix belongs to, nor which evaluation method it follows. | `TM-001` requires the material's header to carry `project` and `method` and reports whichever is missing; it checks only that the header declares them, not that they agree with the tender document. If your institution's form has no evaluation-method column, set that rule's `fields` to `[project]` so it stops asking for a column your form never carries. |
+
+## Standards it follows
+
+| Document | Number | Cited by rules |
+|---|---|---|
+| 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | TM-001, TM-002, TM-003, TM-004, TM-005, TM-006, TM-007 |
 
 **Boundary:** this plugin checks an **评标因素评分矩阵** for arithmetic — that the matrix names its project and
 evaluation method, that no single score exceeds its item's maximum, that the maximum scores total what you
