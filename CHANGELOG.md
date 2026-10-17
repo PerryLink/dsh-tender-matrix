@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.10] - 2026-10-18
+
+### Fixed
+
+- **The rule-pack header no longer claims every `excerpt` is a non-quotation.** The gate checks 7 verbatim segments; the header now distinguishes verbatim quotations from “本次未取得” placeholders and states the real `kind` discipline.
+
 ## [0.2.9] - 2026-10-18
 
 ### Changed
