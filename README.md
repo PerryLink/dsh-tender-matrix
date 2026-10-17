@@ -4,6 +4,13 @@
 
 `dsh-tender-matrix` reads one 评标因素评分矩阵 — a tender's evaluation-factor scoring matrix: the package header plus one row per evaluation factor — and checks that matrix's own arithmetic and completeness: that it names its project and its evaluation method, that no single score exceeds that item's maximum, that the item maximum scores total the figure you configure, that one bidder's scores total the figure you configure, that every score records its basis, that factor numbers are unique, and that no unreplaced placeholder survives in the basis column.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-tender-matrix
+dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
+```
+
 ## What it looks like
 
 ![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
@@ -82,13 +89,6 @@ evaluation factor — applies a versioned rule pack, and returns a report.
 | `TM-005` | every score records its basis | warn | principle |
 | `TM-006` | factor numbers are unique | warn | principle |
 | `TM-007` | the basis column holds no unreplaced placeholder | warn | principle |
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-tender-matrix
-dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
-```
-
 ## Configuration
 
 | Key | Type | Default | Description |

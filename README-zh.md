@@ -4,6 +4,13 @@
 
 `dsh-tender-matrix` 读取一份评标因素评分矩阵——表头加每个评审因素一行——核对这份矩阵自身的算术与齐备：是否写明项目与评标办法、单项得分是否超过该项分值上限、各项分值上限合计是否等于你配置的总分、某个投标人的各项得分合计是否等于你配置的合计、每条评分是否填写评分依据、评审因素序号是否重复、评分依据栏是否残留未替换的占位符。
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-tender-matrix
+dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
+```
+
 ## 实际输出长什么样
 
 ![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
@@ -71,13 +78,6 @@ judgement, and the weights and criteria are the tender document's.**
 ## What it does
 
 规则表、字段说明与行为细节见 [README.md](README.md#what-it-does)（英文主版本）。本插件只列出材料与所引条款之间的字面差异，并对无法执行的检查在 `skipped` 中逐项说明。
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-tender-matrix
-dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
-```
 
 ## Configuration
 

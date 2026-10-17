@@ -4,6 +4,13 @@
 
 `dsh-tender-matrix` lee una matriz de puntuación de los factores de evaluación —la cabecera del expediente más una fila por factor de evaluación— y comprueba la aritmética y la integridad de esa propia matriz: que declare su proyecto y su método de evaluación, que ninguna puntuación supere el máximo de su partida, que los máximos de las partidas sumen la cifra que usted configure, que las puntuaciones de un licitador sumen la cifra que usted configure, que cada puntuación registre su fundamento, que los números de factor sean únicos y que no quede ningún marcador de plantilla sin sustituir en la columna del fundamento.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-tender-matrix
+dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
+```
+
 ## Cómo se ve la salida
 
 ![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
@@ -71,13 +78,6 @@ judgement, and the weights and criteria are the tender document's.**
 ## What it does
 
 La tabla de reglas, los campos y el comportamiento detallado están en [README.md](README.md#what-it-does) (versión principal en inglés). El plugin sólo enumera divergencias literales frente a las cláusulas citadas e indica en `skipped` cada comprobación que no pudo ejecutarse.
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-tender-matrix
-dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
-```
 
 ## Configuration
 

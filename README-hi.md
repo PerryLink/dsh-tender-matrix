@@ -4,6 +4,13 @@
 
 `dsh-tender-matrix` एक मूल्यांकन-कारक अंक-मैट्रिक्स — शीर्षक पंक्ति और प्रत्येक मूल्यांकन कारक की एक पंक्ति — पढ़ता है और उसी मैट्रिक्स की अपनी अंकगणित और पूर्णता की जाँच करता है: क्या उसमें परियोजना और मूल्यांकन पद्धति लिखी है, क्या कोई अंक उस मद की अधिकतम सीमा से अधिक नहीं है, क्या मदों की अधिकतम सीमाओं का जोड़ आपके द्वारा कॉन्फ़िगर किए गए कुल के बराबर है, क्या किसी एक बोलीदाता के अंकों का जोड़ आपके द्वारा कॉन्फ़िगर किए गए कुल के बराबर है, क्या प्रत्येक अंक का आधार दर्ज है, क्या कारक संख्याएँ अद्वितीय हैं, और क्या आधार कॉलम में कोई अपरिवर्तित प्लेसहोल्डर शेष नहीं है।
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-tender-matrix
+dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
+```
+
 ## आउटपुट कैसा दिखता है
 
 ![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
@@ -71,13 +78,6 @@ judgement, and the weights and criteria are the tender document's.**
 ## What it does
 
 नियम-सूची, फ़ील्ड और विस्तृत व्यवहार [README.md](README.md#what-it-does) (अंग्रेज़ी मुख्य संस्करण) में हैं। यह प्लगइन केवल उद्धृत धाराओं के सामने शाब्दिक अंतर सूचीबद्ध करता है और हर न चल पाई जाँच को `skipped` में बताता है।
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-tender-matrix
-dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
-```
 
 ## Configuration
 
