@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-tender-matrix-hero.png",
+    "kind": "hero",
+    "alt": "dsh-tender-matrix terminal output",
+    "caption": "Real dsh-tender-matrix checker output; 31 tests passed."
+  },
+  {
+    "path": "docs/assets/dsh-tender-matrix-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-tender-matrix terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]

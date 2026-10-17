@@ -6,7 +6,9 @@
 
 ## Cómo se ve la salida
 
-![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-demo.png)
+![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
+
+![Animated terminal demo of dsh-tender-matrix](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-demo.gif)
 
 Salida real de este plugin sobre su propio fixture de prueba `TM-001` — no es un montaje. El paquete de reglas no inventa citas, así que cada hallazgo nombra la cláusula aplicada y advierte que su texto no se obtuvo.
 
