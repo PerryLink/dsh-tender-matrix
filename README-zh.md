@@ -38,12 +38,7 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 |---|---|---|
 | 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | TM-001, TM-002, TM-003, TM-004, TM-005, TM-006, TM-007 |
 
-**Boundary:** this plugin checks an **评标因素评分矩阵** for arithmetic — that the matrix names its project and
-evaluation method, that no single score exceeds its item's maximum, that the maximum scores total what you
-configure, that a bidder's scores total what you configure, that each score records its basis, that factor
-numbers are unique, and that no placeholder survives. It does **not** decide whether a score is appropriate,
-whether the evaluation was fair, or who should win. **Scoring is the evaluation committee's independent
-judgement, and the weights and criteria are the tender document's.**
+**边界（中文译文，以英文原文为准）：** 本插件核对一份**评标因素评分矩阵**的算术——矩阵是否写明项目与评标办法，单项得分是否不超过该项分值上限，各分值上限合计是否等于你配置的数字，某投标人的得分合计是否等于你配置的数字，每项得分是否记录评分依据，评审因素序号是否唯一，以及是否残留占位符。它**不**判定评分是否恰当、评标是否公平，也不判定谁应当中标。**评分是评标委员会的独立判断，权重与评审标准属于招标文件。**
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
