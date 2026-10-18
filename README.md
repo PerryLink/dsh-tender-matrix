@@ -1,5 +1,7 @@
 # dsh-tender-matrix — Tender evaluation-factor scoring matrix arithmetic self-consistency check
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-tender-matrix` reads one 评标因素评分矩阵 — a tender's evaluation-factor scoring matrix: the package header plus one row per evaluation factor — and checks that matrix's own arithmetic and completeness: that it names its project and its evaluation method, that no single score exceeds that item's maximum, that the item maximum scores total the figure you configure, that one bidder's scores total the figure you configure, that every score records its basis, that factor numbers are unique, and that no unreplaced placeholder survives in the basis column.

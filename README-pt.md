@@ -1,5 +1,7 @@
 # dsh-tender-matrix — Verificação aritmética da matriz de pontuação dos fatores de avaliação
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-tender-matrix` lê uma matriz de pontuação dos fatores de avaliação —o cabeçalho do processo mais uma linha por fator de avaliação— e verifica a aritmética e a completude dessa própria matriz: se declara o seu projeto e o seu método de avaliação, se nenhuma pontuação excede o máximo da sua rubrica, se os máximos das rubricas somam o valor que você configurar, se as pontuações de um concorrente somam o valor que você configurar, se cada pontuação regista o seu fundamento, se os números de fator são únicos e se não resta nenhum marcador de modelo por substituir na coluna do fundamento.
