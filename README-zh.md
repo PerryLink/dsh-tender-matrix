@@ -40,28 +40,16 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 
 **边界（中文译文，以英文原文为准）：** 本插件核对一份**评标因素评分矩阵**的算术——矩阵是否写明项目与评标办法，单项得分是否不超过该项分值上限，各分值上限合计是否等于你配置的数字，某投标人的得分合计是否等于你配置的数字，每项得分是否记录评分依据，评审因素序号是否唯一，以及是否残留占位符。它**不**判定评分是否恰当、评标是否公平，也不判定谁应当中标。**评分是评标委员会的独立判断，权重与评审标准属于招标文件。**
 
-> ### ⚠️ Read this before trusting a citation in the report
+> ### ⚠️ 在相信报告中的引文之前，请先读这一节（以英文原文为准）
 >
-> **Every `excerpt` in this plugin's rule pack says, in so many words, that the clause text was not
-> obtained.** The regime lives in 《中华人民共和国招标投标法》and its implementing regulations, plus **each
-> project's evaluation method inside the tender document**. The verification pass could not retrieve verbatim
-> clause text, so rather than paraphrase a quotation the pack states the gap in the `excerpt` field itself and
-> puts the honest reasoning in `note`. Every rule is therefore `warn` or `info`, and a test asserts that no
-> rule claims a quotation it does not have. **When the texts are in hand, two things must be done: replace
-> each `excerpt` with the real clause, and raise `kind` to `direct`.**
+> **本插件规则库中的每一个 `excerpt` 都明文写着：条款原文本次未取得。** 该制度见于《中华人民共和国招标投标法》及其配套法规，外加**招标文件中每个项目各自的评标办法**。核验环节无法取得逐字条款原文，因此规则库没有去转述一段引文，而是在 `excerpt` 字段本身写明这一缺口，并把诚实的推理写进 `note`。因此每条规则都是 `warn` 或 `info`，且有测试断言：没有任何规则声称拥有它实际没有的引文。**待取得原文后，必须做两件事：把每个 `excerpt` 换成真实条款，并把 `kind` 提到 `direct`。**
 >
-> **The plugin ships no scoring scale.** The two total checks ship with a target of `0`, meaning "not
-> configured":
+> **本插件不自带任何评分尺度。** 两项合计核对出厂时目标值都是 `0`，含义是「未配置」：
 >
-> - `TM-003` compares the sum of the items' maximum scores against `target`. 100 is common, but 120-point
->   scales and weighted schemes exist, so the total is your tender document's figure and the rule reports
->   that it could not run until you set it.
-> - `TM-004` compares the sum of one bidder's scores against `target`. The check compares the column against
->   the figure **you** state; it is deliberately not wired to a per-bidder total column, so it stays a pure
->   addition check.
+> - `TM-003` 把各评审因素分值上限之和与 `target` 相比。100 分很常见，但也存在 120 分制与加权方案，因此合计数应以你的招标文件为准，在你设定之前，该条规则会报告自己无法执行。
+> - `TM-004` 把某一位投标人的得分合计与 `target` 相比。该检查拿这一栏与你**自己**写明的数字相比；它刻意没有接到「每位投标人合计」栏上，因此始终是一条纯粹的加法核对。
 >
-> `TM-002` checks column A by default (`bidderA` vs `maxScore`). Add a rule each for B and C, or override
-> `leftField` per call.
+> `TM-002` 默认核对 A 栏（`bidderA` 对 `maxScore`）。请为 B、C 各加一条规则，或按调用覆盖 `leftField`。
 
 ## Compatibility
 
