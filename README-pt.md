@@ -29,6 +29,35 @@ Saída real deste plugin sobre o seu próprio fixture de teste `TM-001` — não
 
 A tabela abaixo é o conjunto de exemplos: a primeira linha é o caso detalhado e as demais são casos curtos.
 
+#### Saída detalhada
+
+**Ferramenta** `tender_matrix`
+
+**Entrada**
+
+~~~json
+{"rows":[{"评审因素":"施工组织设计","分值":"30","投标人A":"32"}]}
+~~~
+ 
+**Saída**
+
+~~~json
+{
+  "id": "dsh-tender-matrix.TM-002.de09b5a6",
+  "ruleId": "TM-002",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "bidderA"
+  },
+  "found": "第 1 行「bidderA」为 32，「maxScore」为 30，不满足不大于关系",
+  "expected": "「bidderA」应不大于「maxScore」",
+  "fix": "核对评分是否抄错；本条只核对是否超出分值上限，不判断评分是否恰当"
+}
+~~~
+
+*Observado em `dsh-tender-matrix/tests/fixtures/TM-002/TM-002-unsafe.json`*
+
 | Você pergunta | O que ele responde |
 |---|---|
 | Todas as células da matriz estão preenchidas, por que motivo as duas regras de totais voltam como `skipped`? | Porque as duas vêm por configurar: `TM-003` compara a soma da coluna `maxScore` com o seu `target`, e `TM-004` soma as pontuações `bidderA` de um concorrente contra o seu `target`; ambas trazem `target: 0`, ou seja «não configurado», pelo que cada uma se reporta em `skipped` em vez de passar em silêncio até você inscrever o valor indicado no documento do concurso. Depois de configurada, uma ocorrência significa apenas que a soma difere do valor que você fixou, não que a escala de pontuação seja irregular; `TM-004` é uma soma pura e deliberadamente não está ligada a nenhuma coluna de total por concorrente. |

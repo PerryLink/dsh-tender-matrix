@@ -29,6 +29,35 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 
 下表是示例集：第一行是详细走查，其余行是简短案例。
 
+#### 详细输出
+
+**工具** `tender_matrix`
+
+**输入**
+
+~~~json
+{"rows":[{"评审因素":"施工组织设计","分值":"30","投标人A":"32"}]}
+~~~
+ 
+**输出**
+
+~~~json
+{
+  "id": "dsh-tender-matrix.TM-002.de09b5a6",
+  "ruleId": "TM-002",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "bidderA"
+  },
+  "found": "第 1 行「bidderA」为 32，「maxScore」为 30，不满足不大于关系",
+  "expected": "「bidderA」应不大于「maxScore」",
+  "fix": "核对评分是否抄错；本条只核对是否超出分值上限，不判断评分是否恰当"
+}
+~~~
+
+*来源 `dsh-tender-matrix/tests/fixtures/TM-002/TM-002-unsafe.json`*
+
 | 你会问 | 它怎么答 |
 |---|---|
 | 矩阵每一格都填了，为什么两条合计规则都报 `skipped`？ | 因为两条合计规则出厂都未配置：`TM-003` 把 `maxScore` 一列之和与它的 `target` 相比，`TM-004` 把某个投标人 `bidderA` 一列之和与它的 `target` 相比，两者的 `target` 出厂都是 `0`，即「未配置」，所以在你填入招标文件规定的数字之前，它们各自报 `skipped`，而不是静默通过。配置之后命中只表示「合计与你配置的数字不等」，不代表分值设置不合规；`TM-004` 只做加法核对，刻意没有接到任何「投标人合计」栏上。 |

@@ -28,6 +28,35 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 
 The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
+#### Detailed output
+
+**Tool** `tender_matrix`
+
+**Input**
+
+~~~json
+{"rows":[{"评审因素":"施工组织设计","分值":"30","投标人A":"32"}]}
+~~~
+ 
+**Output**
+
+~~~json
+{
+  "id": "dsh-tender-matrix.TM-002.de09b5a6",
+  "ruleId": "TM-002",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "bidderA"
+  },
+  "found": "第 1 行「bidderA」为 32，「maxScore」为 30，不满足不大于关系",
+  "expected": "「bidderA」应不大于「maxScore」",
+  "fix": "核对评分是否抄错；本条只核对是否超出分值上限，不判断评分是否恰当"
+}
+~~~
+
+*Observed from `dsh-tender-matrix/tests/fixtures/TM-002/TM-002-unsafe.json`*
+
 | You ask | What it answers |
 |---|---|
 | Every cell of the matrix is filled in, so why do both total checks report `skipped`? | Because both totals ship unconfigured: `TM-003` compares the sum of the `maxScore` column against its `target`, and `TM-004` adds up one bidder's `bidderA` scores against its `target`; both carry `target: 0`, meaning “not configured”, so each reports itself in `skipped` rather than passing quietly until you enter the figure your tender document states. Once configured, a hit means only that the sum differs from the figure you set — not that the score scale is non-compliant; `TM-004` is pure addition and is deliberately not wired to any per-bidder total column. |
