@@ -15,13 +15,17 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 
 ## What it looks like
 
-![Terminal demo of dsh-tender-matrix: real output over its TM-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-hero.png)
+![Workflow diagram for dsh-tender-matrix: call → plugin → result.](docs/assets/dsh-tender-matrix-flow.svg)
 
-![Animated terminal demo of dsh-tender-matrix](https://raw.githubusercontent.com/PerryLink/dsh-tender-matrix/main/docs/assets/dsh-tender-matrix-demo.gif)
+*Workflow overview: call → plugin → result. The examples below use the real command surface.*
 
-Real output from this plugin over its own `TM-001` test fixture — not a mock-up. The rule pack ships no invented quotations, so a finding names both the clause it applied and the fact that the clause text was not obtained.
+
 
 ## What it answers
+
+### Examples
+
+The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
 | You ask | What it answers |
 |---|---|
