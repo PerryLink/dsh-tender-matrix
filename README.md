@@ -81,13 +81,11 @@ judgement, and the weights and criteria are the tender document's.**
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
-> **Every `excerpt` in this plugin's rule pack says, in so many words, that the clause text was not
-> obtained.** The regime lives in 《中华人民共和国招标投标法》and its implementing regulations, plus **each
-> project's evaluation method inside the tender document**. The verification pass could not retrieve verbatim
-> clause text, so rather than paraphrase a quotation the pack states the gap in the `excerpt` field itself and
-> puts the honest reasoning in `note`. Every rule is therefore `warn` or `info`, and a test asserts that no
-> rule claims a quotation it does not have. **When the texts are in hand, two things must be done: replace
-> each `excerpt` with the real clause, and raise `kind` to `direct`.**
+> **Every `excerpt` in this plugin's rule pack is a verbatim quotation of the clause it cites, and**
+> **the citation gate re-checks each segment against the record in `rules/evidence/`.** 《中华人民共和国招标投标法》and its implementing regulations, plus each project's evaluation method inside the tender document. The
+> pack states a requirement verbatim when the clause states it, and stops at `warn` when the clause only
+> implies it: a check that rests on a general principle is capped below `error` and says so in its own
+> `note`. What the pack will not do is paraphrase a clause and present the paraphrase as a quotation.
 >
 > **The plugin ships no scoring scale.** The two total checks ship with a target of `0`, meaning "not
 > configured":
