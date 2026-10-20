@@ -82,26 +82,12 @@ judgement, and the weights and criteria are the tender document's.**
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
-> **Every `excerpt` in this plugin's rule pack says, in so many words, that the clause text was not
-> obtained.** The regime lives in 《中华人民共和国招标投标法》and its implementing regulations, plus **each
-> project's evaluation method inside the tender document**. The verification pass could not retrieve verbatim
-> clause text, so rather than paraphrase a quotation the pack states the gap in the `excerpt` field itself and
-> puts the honest reasoning in `note`. Every rule is therefore `warn` or `info`, and a test asserts that no
-> rule claims a quotation it does not have. **When the texts are in hand, two things must be done: replace
-> each `excerpt` with the real clause, and raise `kind` to `direct`.**
->
-> **The plugin ships no scoring scale.** The two total checks ship with a target of `0`, meaning "not
-> configured":
->
-> - `TM-003` compares the sum of the items' maximum scores against `target`. 100 is common, but 120-point
->   scales and weighted schemes exist, so the total is your tender document's figure and the rule reports
->   that it could not run until you set it.
-> - `TM-004` compares the sum of one bidder's scores against `target`. The check compares the column against
->   the figure **you** state; it is deliberately not wired to a per-bidder total column, so it stays a pure
->   addition check.
->
-> `TM-002` checks column A by default (`bidderA` vs `maxScore`). Add a rule each for B and C, or override
-> `leftField` per call.
+> **Every `excerpt` in this plugin's rule pack is a verbatim quotation of the clause it cites, and the
+> citation gate re-checks each segment against the record in `rules/evidence/`.** The pack states a
+> requirement verbatim when the clause states it, and stops at `warn` when the clause only implies it: a
+> check that rests on a general principle is capped below `error` and says so in its own `note`. What the
+> pack will not do is paraphrase a clause and present the paraphrase as a quotation.
+
 
 ## Compatibility
 
