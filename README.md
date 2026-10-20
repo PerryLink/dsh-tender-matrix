@@ -106,7 +106,7 @@ judgement, and the weights and criteria are the tender document's.**
 |---|---|
 | Harness | Peer range `>=0.1.2-rc.1 <0.2.0 \|\| >=0.2.0-0 <0.3.0` — verified to accept both `0.2.0-rc.2` and `0.2.1-rc.2`. `engines.dsh` is declared as `>=0.2.1-0 <0.3.0` and is enforced by the host since 0.2.1 |
 | Node | `^22.19.0 || >=24.0.0` |
-| Platforms | All (plain ESM; no native code, no network, no model call) |
+| Platforms | Any host that runs plain ESM on Node 22.19+; no native code, no network, no model call. Tested on Linux only |
 | Tool mode | Works in `native` and `ptc`; for several packages use `ptc` |
 
 ## What it does

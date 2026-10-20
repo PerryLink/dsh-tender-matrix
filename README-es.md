@@ -21,7 +21,7 @@ dsh --profile <name> --dump-config | grep 'dsh-tender-matrix'
 *Resumen del flujo: llamada → plugin → resultado. Los ejemplos siguientes usan la superficie de comandos real.*
 
 
-Salida real de este plugin sobre su propio fixture de prueba `TM-001` — no es un montaje. El paquete de reglas no inventa citas, así que cada hallazgo nombra la cláusula aplicada y advierte que su texto no se obtuvo.
+El diagrama muestra el flujo; **no** es la salida de una ejecución. El paquete de reglas no inventa citas, así que cada hallazgo nombra la cláusula aplicada y advierte que su texto no se obtuvo.
 
 ## Qué responde
 
@@ -95,7 +95,7 @@ judgement, and the weights and criteria are the tender document's.**
 |---|---|
 | Harness | Rango de peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.2.0-0 <0.3.0` — verificado para aceptar tanto `0.2.0-rc.2` como `0.2.1-rc.2`. **`engines.dsh` se declara como `>=0.2.1-0 <0.3.0`** y el host lo aplica desde 0.2.1 |
 | Node | `^22.19.0 || >=24.0.0` |
-| Plataformas | Todas (ESM puro; sin código nativo, sin red, sin llamada al modelo) |
+| Plataformas | Cualquier host que ejecute ESM puro sobre Node 22.19+; probado solo en Linux |
 | Modo de herramienta | Funciona en `native` y `ptc`; para un directorio completo use `ptc` |
 
 ## What it does
