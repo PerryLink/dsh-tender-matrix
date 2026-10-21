@@ -48,7 +48,7 @@ rules:
         kind: headerPresence
         fields: [project, method]
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 derived-from-principle：第三十七条规范评标委员会的组成与保密，未要求评分矩阵写明项目与评标办法——那两栏是结论可追溯性的前提。
       评分矩阵若不写明项目与所依据的评标办法，各项分值就失去了约束来源——
       无法判断这套评分项与分值是否与招标文件一致。本次未取得明文条号，故封顶 warn。
@@ -63,7 +63,7 @@ rules:
       number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
       clause: 第四十条第一款——评标委员会应当按照招标文件确定的评标标准和方法对投标文件进行评审和比较
       excerpt: 评标委员会应当按照招标文件确定的评标标准和方法，对投标文件进行评审和比较；设有标底的，应当参考标底。评标委员会完成评标后，应当向招标人提出书面评标报告，并推荐合格的中标候选人。
-      kind: direct
+      kind: derived-from-principle
       source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
     params:
       check:
@@ -73,8 +73,11 @@ rules:
         relation: lte
         fix: 核对评分是否抄错；本条只核对是否超出分值上限，不判断评分是否恰当
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
-      ✅ kind 已升为 direct（2026-10-07）：第四十条第一款逐字要求评标委员会「按照招标文件确定的评标标准和方法」评审——单项得分超过该项分值上限即脱离该标准。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ **kind 于 2026-10-20 由 direct 降回 derived-from-principle。** 第四十条第一款要求评标委员会
+      「按照招标文件确定的评标标准和方法」评审，它**没有**规定"单项得分不得超过该项分值上限"——
+      那条上限是从"按既定标准评审"推出来的，不是条文自己说的话。此前标 direct 与本条 note 末句
+      「本次未取得明文条号」自相矛盾，报告也不会显示「原则性条款推论」的限定。
       **单项得分不得超过该项分值上限**是评分矩阵的构造前提：
       超出上限的评分在算术上就不成立，也无法与其他投标人可比。本次未取得明文条号，故封顶 warn。
       本条核对 A 列（`leftField`）；核对 B、C 列时把 leftField 改成 bidderB、bidderC 各加一条即可，
@@ -98,7 +101,7 @@ rules:
         field: maxScore
         target: 0
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 institutional-configuration：第四十条只要求按既定标准评标，分值合计的上限属本机构口径。
       target 出厂为 0，表示**未配置**，本条进 skipped。
       依据说明：**总分上限由招标文件的评标办法规定**，常见 100 分，
@@ -123,7 +126,7 @@ rules:
         field: bidderA
         target: 0
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 derived-from-principle：第四十一条规定中标人投标应当符合的条件，未规定评分表的算术自洽。
       本条核对 A 列各项得分之和是否等于本机构配置的该投标人合计（target）。
       合计是**加出来的**，属纯算术核对；本次未取得明文条号，故封顶 warn。
@@ -148,7 +151,7 @@ rules:
         field: basis
         fix: 补填评分依据；本条只核对是否填写，不判断依据是否成立
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 derived-from-principle：第四十条要求提出书面评标报告，未要求评分表填写依据。
       评分若没有依据记录，得分就无法复核，也无法向投标人说明理由。
       本次未取得明文条号，故封顶 warn。
@@ -169,7 +172,7 @@ rules:
         kind: unique
         field: seq
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 derived-from-principle：第四十三条禁止确定中标人前与投标人实质性谈判，未规定评审因素序号不得重复。
       因素序号唯一是"每个评分项只被登记一次"的**前提条件**：序号重复会让人无法判断
       到底是重复登记，还是两个评分项被错编成同一号，分值合计也会因此出错。
@@ -192,7 +195,7 @@ rules:
         terms: ['【', '】', '{{', '}}', 'XXX', 'xxx', '待填', '待补充', 'TBD', 'todo', '示例']
         fix: 评分依据应填写实际内容；残留占位符说明矩阵是照模板抄的
     note: >-
-      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-zbtbf.md）。
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
       ⚠️ kind 仍为 derived-from-principle：第四十条未就占位符作任何规定。
       评分矩阵常由模板复制而来，依据栏留下【】、XXX、待填、TBD 之类占位符时，
       会让人误以为已经记录了评分理由——**这是评分类工具最危险的失效方式**。
