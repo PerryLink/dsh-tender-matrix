@@ -1,0 +1,3 @@
+req_id,metric,threshold,actual,script,evidence_sha256,pass,source,counted
+CHK-TENDER-MATRIX-A01,vitest 真实运行,33/33,33,npx vitest run,2a97d61929098d1cb312918c6513c97e8eeec9272041bf629aa56eef8216c4e6,true,public/synthetic,false
+CHK-TENDER-MATRIX-A02,失败用例数,0,0,npx vitest run,2a97d61929098d1cb312918c6513c97e8eeec9272041bf629aa56eef8216c4e6,true,public/synthetic,false
