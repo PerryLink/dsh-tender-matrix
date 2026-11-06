@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-label="dsh-tender-matrix pipeline">
+<title>dsh-tender-matrix pipeline</title>
+<rect width="1200" height="440" rx="18" fill="#ffffff"/>
+<text x="60" y="62" fill="#1f2328" font-family="ui-sans-serif,system-ui,sans-serif" font-size="30" font-weight="700">dsh-tender-matrix</text>
+<text x="60" y="94" fill="#57606a" font-family="ui-monospace,monospace" font-size="16">evaluation-factor scoring matrix · arithmetic self-consistency</text>
+<line x1="60" y1="116" x2="1140" y2="116" stroke="#d0d7de"/>
+<rect x="105" y="140" width="210" height="92" rx="14" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+<text x="210" y="178" fill="#1f2328" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" font-weight="700">file | material</text>
+<text x="210" y="206" fill="#57606a" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">JSON or YAML</text>
+<path d="M321 186h38" stroke="#57606a" stroke-width="3"/>
+<path d="M357 179l10 7-10 7" fill="none" stroke="#57606a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="365" y="140" width="210" height="92" rx="14" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+<text x="470" y="178" fill="#1f2328" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" font-weight="700">parse</text>
+<text x="470" y="206" fill="#57606a" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">header + rows</text>
+<path d="M581 186h38" stroke="#57606a" stroke-width="3"/>
+<path d="M617 179l10 7-10 7" fill="none" stroke="#57606a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="625" y="140" width="210" height="92" rx="14" fill="#f6f8fa" stroke="#4B67B4" stroke-width="2"/>
+<text x="730" y="178" fill="#1f2328" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" font-weight="700">runCheck</text>
+<text x="730" y="206" fill="#57606a" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">TM-001 … TM-007</text>
+<path d="M841 186h38" stroke="#57606a" stroke-width="3"/>
+<path d="M877 179l10 7-10 7" fill="none" stroke="#57606a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="885" y="140" width="210" height="92" rx="14" fill="#f6f8fa" stroke="#16a34a" stroke-width="2"/>
+<text x="990" y="178" fill="#1f2328" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" font-weight="700">report</text>
+<text x="990" y="206" fill="#57606a" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">found · expected · fix</text>
+<path d="M730 232v56" stroke="#4B67B4" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M990 232v56" stroke="#4B67B4" stroke-width="2" stroke-dasharray="5 5"/>
+<rect x="300" y="288" width="540" height="54" rx="12" fill="#f6f8fa" stroke="#4B67B4" stroke-width="2"/>
+<text x="570" y="321" fill="#1f2328" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14">rules/tender-matrix.yaml · TM-001 … TM-007</text>
+<rect x="880" y="288" width="260" height="54" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+<text x="1010" y="321" fill="#57606a" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14">skipped[] · reason recorded</text>
+<text x="60" y="404" fill="#57606a" font-family="ui-monospace,monospace" font-size="13">read-only material · no network · no model call · differences only</text>
+</svg>
