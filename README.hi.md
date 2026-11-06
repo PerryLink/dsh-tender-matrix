@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-dark.svg">
-  <img src="docs/assets/dsh-tender-matrix-flow-light.svg" width="100%" alt="dsh-tender-matrix प्रवाह: अंक-मैट्रिक्स → tender_matrix → नियम-पैक TM-001…TM-007 → अंतर-सूची">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-hero-en-dark.webp">
+  <img src="docs/assets/dsh-tender-matrix-hero-en-light.webp" width="100%" alt="dsh-tender-matrix बैनर: बाईं ओर प्लगइन का नाम और दो मूल्य-पंक्तियाँ; दाईं ओर एक वास्तविक अंक-मैट्रिक्स — पंक्ति 1 में bidderA 32, maxScore 30 से अधिक है, इसलिए TM-002 warn देता है; सात नियमों में एक लागू होता है और दो skipped हैं क्योंकि target सेट नहीं है।">
 </picture>
 
 # dsh-tender-matrix
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-tender-matrix
 `dsh-tender-matrix` एक **मूल्यांकन-कारक अंक-मैट्रिक्स** पढ़ता है — शीर्षक पंक्ति (परियोजना, निविदा संख्या, मूल्यांकन पद्धति) और प्रत्येक मूल्यांकन कारक की एक पंक्ति — और उसी मैट्रिक्स की अंकगणित और पूर्णता जाँचता है: क्या उसमें परियोजना और मूल्यांकन पद्धति लिखी है, क्या कोई अंक उस मद की अधिकतम सीमा से अधिक नहीं है, क्या मदों की अधिकतम सीमाओं का जोड़ आपके द्वारा कॉन्फ़िगर किए गए कुल के बराबर है, क्या किसी एक बोलीदाता के अंकों का जोड़ आपके द्वारा कॉन्फ़िगर किए गए कुल के बराबर है, क्या प्रत्येक अंक का आधार दर्ज है, क्या कारक संख्याएँ अद्वितीय हैं, और क्या आधार कॉलम में कोई अपरिवर्तित प्लेसहोल्डर शेष नहीं है।
 
 यह बताता है कि कौन-सी पंक्ति, कौन-सा कॉलम और क्या अंतर है, ताकि निविदा एजेंसी, मूल्यांकन सहायता और आंतरिक समीक्षा इसे मद-दर-मद जाँच सकें। यह **नहीं** करता: अनुपालन का निर्णय, दायित्व का निर्धारण, समीक्षक का प्रतिस्थापन, या यह तय करना कि किसे जीतना चाहिए — अंक देना मूल्यांकन समिति का स्वतंत्र निर्णय है, और भार व मानदंड निविदा दस्तावेज़ के हैं।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="dsh-tender-matrix संरचना: सामग्री parseTable से शीर्षक और पंक्तियों में बदलती है; मैट्रिक्स का प्रत्येक कॉलम उसे पढ़ने वाले नियमों के साथ अंकित है — शीर्षक पर TM-001, seq पर TM-006, maxScore पर TM-003, bidderA पर TM-004, basis पर TM-005 और TM-007, और bidderA सेल पर TM-002 जो 32 > 30 की तुलना करता है; TM-003/TM-004 target सेट न होने से skipped हैं; नीचे issues[] और skipped[] के दो निर्गम, कोई अनुपालन निर्णय नहीं।">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -330,7 +335,7 @@ pnpm pack                          # प्रकाशित tarball
 node ../scripts/sync-shared.mjs dsh-tender-matrix   # src/shared ताज़ा करें
 ```
 
-`prepublishOnly` द्वार को दोबारा चलाता है, इसलिए बिगड़ा हुआ ट्री प्रकाशित नहीं हो सकता। README की तस्वीरें `scripts/gen-readme-assets.py` बनाता है (Python + Pillow, आउटपुट `docs/assets/dsh-tender-matrix-flow-{light,dark}.svg`) और इसे दोबारा चलाया जा सकता है।
+`prepublishOnly` द्वार को दोबारा चलाता है, इसलिए बिगड़ा हुआ ट्री प्रकाशित नहीं हो सकता। README की तस्वीरें `scripts/gen-readme-assets.py` बनाता है (Python + Pillow: चार hero WebP और `docs/assets/dsh-tender-matrix-flow-v5-{light,dark}.svg`) और इसे दोबारा चलाया जा सकता है।
 
 | पथ | कार्य |
 |---|---|
@@ -343,7 +348,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # src/shared ताज़ा
 | `rules/tender-matrix.yaml` | नियम-पैक: सात नियमों का डेटा |
 | `rules/evidence/` | हर उद्धरण का धारा-सत्यापन रिकॉर्ड |
 | `tests/` | vitest; हर नियम के युग्मित अनुपालक/उल्लंघनकारी फ़िक्स्चर |
-| `scripts/gen-readme-assets.py` | README हीरो जनरेटर (हल्का/गहरा SVG) |
+| `scripts/gen-readme-assets.py` | README हीरो और संरचना आरेख जनरेटर (Pillow + हस्तलिखित SVG) |
 
 ### समस्या-निवारण
 

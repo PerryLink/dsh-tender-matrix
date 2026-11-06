@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-dark.svg">
-  <img src="docs/assets/dsh-tender-matrix-flow-light.svg" width="100%" alt="Fluxo do dsh-tender-matrix: matriz de pontuação → tender_matrix → pacote de regras TM-001…TM-007 — lista de diferenças">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-hero-en-dark.webp">
+  <img src="docs/assets/dsh-tender-matrix-hero-en-light.webp" width="100%" alt="Banner do dsh-tender-matrix: à esquerda, o nome do plugin e duas frases de valor; à direita, uma matriz de pontuação real — a linha 1 tem bidderA 32 acima de maxScore 30, então TM-002 marca warn; das sete regras, uma dispara e duas são puladas porque target não está configurado.">
 </picture>
 
 # dsh-tender-matrix
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-tender-matrix
 `dsh-tender-matrix` lê uma **matriz de pontuação de fatores de avaliação** — o cabeçalho do processo (projeto, número da licitação, método de avaliação) mais uma linha por fator de avaliação — e confere a aritmética e a completude dessa própria matriz: se declara o seu projeto e o seu método de avaliação, se nenhuma pontuação excede o máximo da sua rubrica, se os máximos das rubricas somam o valor que você configurar, se as pontuações de um concorrente somam o valor que você configurar, se cada pontuação registra o seu fundamento, se os números de fator são únicos e se não resta nenhum marcador de modelo por substituir na coluna do fundamento.
 
 Devolve uma lista de qual linha, qual coluna e o que difere, para a agência de licitação, o apoio à avaliação e a revisão interna conferirem ponto a ponto. **Não** emite veredicto de conformidade, não atribui responsabilidade, não substitui o revisor nem decide quem deve ganhar: a pontuação é o julgamento independente do comitê de avaliação, e os pesos e critérios pertencem ao documento do concurso.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-tender-matrix: o material é analisado em cabeçalho mais linhas; cada coluna da matriz leva as regras que a leem — TM-001 no cabeçalho, TM-006 em seq, TM-003 em maxScore, TM-004 em bidderA, TM-005 e TM-007 em basis, e TM-002 na célula bidderA comparando 32 > 30; TM-003/TM-004 são puladas porque target não está configurado; duas saídas, issues[] e skipped[], sem veredicto de conformidade.">
+</picture>
 
 ## Instalação em três passos
 
@@ -330,7 +335,7 @@ pnpm pack                          # tarball publicado
 node ../scripts/sync-shared.mjs dsh-tender-matrix   # atualizar src/shared
 ```
 
-O `prepublishOnly` volta a rodar o portão, então uma publicação não sai com a árvore fora de sincronia. As imagens do README são geradas por `scripts/gen-readme-assets.py` (Python + Pillow, saída `docs/assets/dsh-tender-matrix-flow-{light,dark}.svg`) e podem ser executadas novamente sem risco.
+O `prepublishOnly` volta a rodar o portão, então uma publicação não sai com a árvore fora de sincronia. As imagens do README são geradas por `scripts/gen-readme-assets.py` (Python + Pillow: quatro WebPs de hero e `docs/assets/dsh-tender-matrix-flow-v5-{light,dark}.svg`) e podem ser executadas novamente sem risco.
 
 | Caminho | Função |
 |---|---|
@@ -343,7 +348,7 @@ O `prepublishOnly` volta a rodar o portão, então uma publicação não sai com
 | `rules/tender-matrix.yaml` | pacote de regras: dados de sete regras |
 | `rules/evidence/` | registro de verificação de cada citação |
 | `tests/` | vitest; cada regra tem fixtures emparelhados conforme/infrator |
-| `scripts/gen-readme-assets.py` | gerador do hero do README (SVG claro/escuro) |
+| `scripts/gen-readme-assets.py` | gerador do hero e do diagrama de estrutura (Pillow + SVG escrito à mão) |
 
 ### Solução de problemas
 

@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-dark.svg">
-  <img src="docs/assets/dsh-tender-matrix-flow-light.svg" width="100%" alt="dsh-tender-matrix flow: scoring matrix → tender_matrix → rule pack TM-001…TM-007 → difference list">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-hero-en-dark.webp">
+  <img src="docs/assets/dsh-tender-matrix-hero-en-light.webp" width="100%" alt="dsh-tender-matrix banner: the plugin name and two value lines on the left; on the right, a real scoring-matrix fixture — row 1 bidderA 32 exceeds maxScore 30, so TM-002 reports warn; one of seven rules fires and two are skipped because target is unset.">
 </picture>
 
 # dsh-tender-matrix
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-tender-matrix
 `dsh-tender-matrix` reads one **evaluation-factor scoring matrix** — a package header (project, tender number, evaluation method) plus one row per evaluation factor — and checks the matrix's own arithmetic and completeness: that it names its project and evaluation method, that no single score exceeds that item's maximum, that the item maximum scores total the figure you configure, that one bidder's scores total the figure you configure, that every score records its basis, that factor numbers are unique, and that no unreplaced placeholder survives in the basis column.
 
 It returns a list of which row, which column, and what differs, for tender agencies, bid-evaluation support and internal review to verify item by item. It does **not** pass a compliance verdict, assign liability, replace the reviewer, or decide who should win — scoring is the evaluation committee's independent judgement, and the weights and criteria belong to the tender document.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="dsh-tender-matrix structure: the material is parsed into a header plus rows; each column of the scoring matrix carries the rules that read it — TM-001 on the header, TM-006 on seq, TM-003 on maxScore, TM-004 on bidderA, TM-005 and TM-007 on basis, and TM-002 on the bidderA cell comparing 32 > 30; TM-003/TM-004 are skipped because target is unset; two exits, issues[] and skipped[], and no compliance verdict.">
+</picture>
 
 ## Three-step setup
 
@@ -330,7 +335,7 @@ pnpm pack                          # the published tarball
 node ../scripts/sync-shared.mjs dsh-tender-matrix   # refresh src/shared
 ```
 
-`prepublishOnly` re-runs the gate, so a release cannot ship a drifted tree. README images are generated programmatically by `scripts/gen-readme-assets.py` (Python + Pillow, outputs `docs/assets/dsh-tender-matrix-flow-{light,dark}.svg`) and are safe to re-run.
+`prepublishOnly` re-runs the gate, so a release cannot ship a drifted tree. README images are generated programmatically by `scripts/gen-readme-assets.py` (Python + Pillow: four hero WebPs and `docs/assets/dsh-tender-matrix-flow-v5-{light,dark}.svg`) and are safe to re-run.
 
 | Path | Purpose |
 |---|---|
@@ -343,7 +348,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # refresh src/shared
 | `rules/tender-matrix.yaml` | rule pack: data for seven rules |
 | `rules/evidence/` | clause-verification record for every citation |
 | `tests/` | vitest; every rule has a paired compliant/violating fixture |
-| `scripts/gen-readme-assets.py` | README hero generator (light/dark SVG) |
+| `scripts/gen-readme-assets.py` | README hero + structure diagram generator (Pillow + hand-written SVG) |
 
 ### Troubleshooting
 

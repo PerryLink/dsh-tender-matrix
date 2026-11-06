@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-dark.svg">
-  <img src="docs/assets/dsh-tender-matrix-flow-light.svg" width="100%" alt="dsh-tender-matrix 核对流程：评分矩阵 → tender_matrix → 规则库 TM-001…TM-007 → 差异清单">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-tender-matrix-hero-zh-light.webp" width="100%" alt="dsh-tender-matrix 横幅：左侧是插件名与两句价值说明；右侧是一份真实评分矩阵夹具——第 1 行「投标人A」32 分超过「分值」30，TM-002 命中 warn；七条规则中 1 条命中、2 条因 target 未配置进入 skipped。">
 </picture>
 
 # dsh-tender-matrix
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-tender-matrix
 `dsh-tender-matrix` 读取一份**评标因素评分矩阵**——表头（项目、招标编号、评标办法）加每个评审因素一行——核对这份矩阵自身的算术与齐备：是否写明项目与评标办法、单项得分是否超过该项分值上限、各项分值上限合计是否等于你配置的总分、某个投标人的各项得分合计是否等于你配置的合计、每条评分是否填写评分依据、评审因素序号是否唯一、评分依据栏是否残留未替换的占位符。
 
 它输出一份「哪一行、哪一栏、差什么」的清单，供招标代理、评标辅助与内审逐条复核。它**不**判合规、不认定责任、不替代审核人，也不判断谁应当中标——评分是评标委员会的独立判断，权重与评审标准属于招标文件。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-tender-matrix-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="dsh-tender-matrix 结构图：材料经 parseTable 归一化为表头加行；评分矩阵的每一栏标注读取它的规则——表头 TM-001、序号 TM-006、分值 TM-003、投标人A 的 TM-004、评分依据的 TM-005 与 TM-007，TM-002 落在投标人A 的单元格上比较 32 > 30；TM-003/TM-004 因 target 未配置进入 skipped；底部是 issues[] 与 skipped[] 两个出口，报告不判合规。">
+</picture>
 
 ## 三步上手
 
@@ -324,7 +329,7 @@ pnpm pack                          # 发布 tarball
 node ../scripts/sync-shared.mjs dsh-tender-matrix   # 刷新 src/shared
 ```
 
-`prepublishOnly` 会重跑门禁，因此带病的工作树无法发布。配图由 `scripts/gen-readme-assets.py` 程序化生成（Python + Pillow，输出 `docs/assets/dsh-tender-matrix-flow-{light,dark}.svg`），可重复执行。
+`prepublishOnly` 会重跑门禁，因此带病的工作树无法发布。配图由 `scripts/gen-readme-assets.py` 程序化生成（Python + Pillow：四张 hero WebP 与 `docs/assets/dsh-tender-matrix-flow-v5-{light,dark}.svg`），可重复执行。
 
 | 路径 | 作用 |
 |---|---|
@@ -337,7 +342,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # 刷新 src/shared
 | `rules/tender-matrix.yaml` | 规则库：7 条规则的数据包 |
 | `rules/evidence/` | 每条引文的条款核验记录 |
 | `tests/` | vitest；每条规则有成对的合规/违规夹具 |
-| `scripts/gen-readme-assets.py` | README hero 配图生成（双色 SVG） |
+| `scripts/gen-readme-assets.py` | README hero 与结构图生成（Pillow + 手写 SVG） |
 
 ### 故障排查
 
