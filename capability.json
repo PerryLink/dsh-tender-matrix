@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "tier": "L1+ingest",
+  "input_formats": [
+    "json",
+    "yaml",
+    "csv",
+    "xlsx",
+    "xlsm",
+    "docx"
+  ],
+  "outputs": [
+    "markdown",
+    "json"
+  ],
+  "rules": {
+    "total": 7,
+    "executed": 5,
+    "skipped": 2,
+    "manual": 0,
+    "unsupported": 0
+  },
+  "benchmark": {
+    "kind": "quickstart-sample",
+    "corpus_size": 1,
+    "note": "评分矩阵的 quickstart 样例经 CSV 抽取；无真实招标文件语料",
+    "measured_at": "2026-11-09"
+  },
+  "limits": [
+    "2 条规则因 CSV 缺少项目/评标办法表头而跳过",
+    "不做合规/定性判定；未执行规则会列在 skipped"
+  ]
+}
