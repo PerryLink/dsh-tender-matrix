@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="figTitle figDesc">
+<title id="figTitle">dsh-tender-matrix structure: one scoring matrix, seven rule locators, two exits</title>
+<desc id="figDesc">The material (file or material, JSON or YAML) is parsed into a header plus rows. The scoring matrix is the object under audit: TM-001 reads the project and method header, TM-006 reads seq, TM-003 reads the maxScore column, TM-002 compares bidderA with maxScore, TM-004 reads the bidderA column, and TM-005 plus TM-007 read the basis column. On the real TM-002 fixture, TM-002 fires on row 1 with 32 greater than 30, while TM-003 and TM-004 are skipped because target is 0. Two exits: issues[] and skipped[]. The report passes no compliance verdict.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0.25" y2="1"><stop offset="0" stop-color="#131a2a"/><stop offset="1" stop-color="#0c1016"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="170%" height="185%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#000000" flood-opacity="0.50"/></filter>
+<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#2a3346"/></pattern>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8496f5"/></marker>
+<marker id="arrfaint" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#737b8d"/></marker>
+</defs>
+<rect width="1100" height="660" rx="22" fill="url(#bg)"/>
+<rect width="1100" height="660" rx="22" fill="url(#dots)" opacity="0.5"/>
+<text x="44" y="58" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="30" font-weight="700">dsh-tender-matrix</text>
+<text x="44" y="86" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14.5">One scoring matrix, seven rules; hits go to issues[], checks that cannot run to skipped[]. No verdict.</text>
+<rect x="924.0" y="37.0" width="132.0" height="22" rx="11.0" fill="#242d42"/>
+<text x="990.0" y="51.85" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">rules 2026.1 · 7 rules</text>
+<text x="44" y="108" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">IN · file | material · JSON / YAML · aliases → fields</text>
+<text x="1056" y="108" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">OUT · issues[] + skipped[] · no verdict</text>
+<line x1="44" y1="122" x2="1056" y2="122" stroke="#2b3348" stroke-width="1"/>
+<rect x="44" y="136" width="700" height="62" rx="16" fill="#1b2231" stroke="#2e374b" stroke-width="1.4" filter="url(#soft)"/>
+<text x="60" y="154" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" font-weight="700" letter-spacing="1.1">MATERIAL · READ-ONLY</text>
+<text x="60" y="174" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13" font-weight="700">file | material</text>
+<line x1="170" y1="169" x2="196" y2="169" stroke="#a8b1c4" stroke-width="1.6" marker-end="url(#arrfaint)"/>
+<text x="204" y="174" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="12" font-weight="700">parseTable</text>
+<line x1="282" y1="169" x2="308" y2="169" stroke="#a8b1c4" stroke-width="1.6" marker-end="url(#arrfaint)"/>
+<text x="316" y="174" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="12" font-weight="700">header + rows[]</text>
+<text x="60" y="190" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">JSON / YAML · column aliases → canonical fields</text>
+<rect x="764" y="136" width="292" height="62" rx="16" fill="#1b2231" stroke="#2e374b" stroke-width="1.4" filter="url(#soft)"/>
+<text x="780" y="154" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" font-weight="700" letter-spacing="1.1">AUDIT FRAME · RULE PACK</text>
+<text x="780" y="174" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="12" font-weight="700">rules/tender-matrix.yaml</text>
+<text x="780" y="190" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">v2026.1 · 7 rules · load guard</text>
+<line x1="80" y1="198" x2="80" y2="212" stroke="#8496f5" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="910" y1="198" x2="910" y2="212" stroke="#737b8d" stroke-width="1.4" stroke-dasharray="4 4"/>
+<rect x="44" y="214" width="1012" height="286" rx="20" fill="#1b2231" stroke="#2e374b" stroke-width="1.4" filter="url(#soft)"/>
+<text x="64" y="238" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="700">Scoring matrix · read-only</text>
+<text x="1036" y="238" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">sample · tests/fixtures/TM-002/TM-002-unsafe.json</text>
+<rect x="64" y="252" width="972" height="34" rx="10" fill="#202839"/>
+<text x="76" y="274" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">project</text>
+<text x="126" y="274" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11.5">some works tender</text>
+<text x="250" y="274" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">method</text>
+<text x="298" y="274" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11.5">comprehensive evaluation</text>
+<text x="470" y="274" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">tenderNo</text>
+<text x="532" y="274" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11.5">ZB-2026-018</text>
+<rect x="958" y="260" width="54" height="18" rx="9.0" fill="#16281c" stroke="#3fb950" stroke-width="1.2"/>
+<text x="985.0" y="272.96" fill="#3fb950" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-001</text>
+<rect x="64" y="294" width="972" height="166" rx="10" fill="none" stroke="#2e374b" stroke-width="1.2"/>
+<rect x="64" y="294" width="972" height="50" rx="10" fill="#202839"/>
+<line x1="118" y1="294" x2="118" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="304" y1="294" x2="304" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="384" y1="294" x2="384" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="462" y1="294" x2="462" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="528" y1="294" x2="528" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="592" y1="294" x2="592" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="656" y1="294" x2="656" y2="460" stroke="#2b3348" stroke-width="1"/>
+<line x1="64" y1="344" x2="1036" y2="344" stroke="#2b3348" stroke-width="1"/>
+<line x1="64" y1="432" x2="1036" y2="432" stroke="#2b3348" stroke-width="1"/>
+<text x="72" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">seq</text>
+<text x="126" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">criterion</text>
+<text x="312" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">category</text>
+<text x="392" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">maxScore</text>
+<text x="470" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">bidderA</text>
+<text x="536" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">bidderB</text>
+<text x="600" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">bidderC</text>
+<text x="664" y="312" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">basis</text>
+<rect x="72" y="320" width="54" height="18" rx="9.0" fill="#16281c" stroke="#3fb950" stroke-width="1.2"/>
+<text x="99.0" y="332.96" fill="#3fb950" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-006</text>
+<rect x="392" y="320" width="54" height="18" rx="9.0" fill="#1b2231" stroke="#737b8d" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="419.0" y="332.96" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-003</text>
+<rect x="470" y="320" width="54" height="18" rx="9.0" fill="#1b2231" stroke="#737b8d" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="497.0" y="332.96" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-004</text>
+<rect x="664" y="320" width="54" height="18" rx="9.0" fill="#16281c" stroke="#3fb950" stroke-width="1.2"/>
+<text x="691.0" y="332.96" fill="#3fb950" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-005</text>
+<rect x="722" y="320" width="54" height="18" rx="9.0" fill="#16281c" stroke="#3fb950" stroke-width="1.2"/>
+<text x="749.0" y="332.96" fill="#3fb950" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-007</text>
+<text x="72" y="370" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="14">1</text>
+<text x="126" y="370" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13">construction plan</text>
+<text x="312" y="370" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13">technical</text>
+<text x="400" y="370" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="14">30</text>
+<rect x="464" y="350" width="62" height="32" rx="8" fill="#2a2216" stroke="#d9a441" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="476" y="372" fill="#d9a441" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="15" font-weight="700">32</text>
+<text x="536" y="370" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">24</text>
+<text x="600" y="370" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">28</text>
+<text x="664" y="370" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13">tender method art. 3.2 · completeness 26 pts</text>
+<rect x="470" y="394" width="54" height="18" rx="9.0" fill="#2a2216" stroke="#d9a441" stroke-width="1.2"/>
+<text x="497.0" y="406.96" fill="#d9a441" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="middle">TM-002</text>
+<text x="470" y="426" fill="#d9a441" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700">32 &gt; 30</text>
+<text x="392" y="426" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">target 0</text>
+<text x="664" y="426" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">filled · no placeholder</text>
+<rect x="64" y="432" width="972" height="28" rx="0" fill="#202839"/>
+<line x1="64" y1="432" x2="1036" y2="432" stroke="#2b3348" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="72" y="450" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">rows[2…n] · same rules, row by row</text>
+<text x="1036" y="450" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" text-anchor="end">aliases → fields · row by row</text>
+<text x="64" y="482" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">legend: green = clean · amber = hit · dashed = skipped</text>
+<text x="1036" y="482" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" text-anchor="end">this run: 4 clean · 1 warn · 2 skipped</text>
+<line x1="300" y1="500" x2="300" y2="512" stroke="#d9a441" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="800" y1="500" x2="800" y2="512" stroke="#737b8d" stroke-width="1.4" marker-end="url(#arrfaint)"/>
+<rect x="44" y="514" width="600" height="100" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.4" filter="url(#soft)"/>
+<rect x="52" y="524" width="4" height="80" rx="2" fill="#d9a441"/>
+<text x="68" y="538" fill="#d9a441" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12.5" font-weight="700">issues[] · 1</text>
+<text x="626" y="538" fill="#d9a441" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">warn</text>
+<text x="68" y="560" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13" font-weight="700">TM-002 · row 1 · field bidderA</text>
+<text x="68" y="580" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11.5">32 &gt; 30 · bidderA should be ≤ maxScore</text>
+<text x="68" y="600" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">check the entered score; no judgement on the score itself</text>
+<rect x="660" y="514" width="396" height="100" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.4" filter="url(#soft)"/>
+<rect x="668" y="524" width="4" height="80" rx="2" fill="#737b8d"/>
+<text x="684" y="538" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12.5" font-weight="700">skipped[] · 2</text>
+<text x="1040" y="538" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" text-anchor="end">unset</text>
+<text x="684" y="560" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="12">TM-003 · target 0</text>
+<text x="684" y="578" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="12">TM-004 · target 0</text>
+<text x="684" y="600" fill="#d9a441" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">unset ≠ passed · reason returned with the entry</text>
+<text x="44" y="640" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">7 rules = 4 clean · 1 warn · 2 skipped</text>
+<rect x="800" y="620" width="256" height="30" rx="15" fill="#242d42" stroke="#8496f5" stroke-width="1.4"/>
+<text x="928" y="640" fill="#8496f5" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" text-anchor="middle" font-weight="700">NO VERDICT · differences only</text>
+</svg>
