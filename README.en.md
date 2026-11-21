@@ -111,6 +111,10 @@ The sample input is `samples/quickstart/input/TM-001-unsafe.json`, the expected 
 
 ### Examples
 
+![dsh-tender-matrix: real terminal run](docs/assets/dsh-tender-matrix-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 These are the plugin's real entry points; install once, then call one.
 
 **Detailed example** — tool `tender_matrix`, input:

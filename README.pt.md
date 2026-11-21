@@ -45,6 +45,11 @@ Devolve uma lista de qual linha, qual coluna e o que difere, para a agência de 
   <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-tender-matrix: o material é analisado em cabeçalho mais linhas; cada coluna da matriz leva as regras que a leem — TM-001 no cabeçalho, TM-006 em seq, TM-003 em maxScore, TM-004 em bidderA, TM-005 e TM-007 em basis, e TM-002 na célula bidderA comparando 32 > 30; TM-003/TM-004 são puladas porque target não está configurado; duas saídas, issues[] e skipped[], sem veredicto de conformidade.">
 </picture>
 
+![dsh-tender-matrix: execução real de terminal](docs/assets/dsh-tender-matrix-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instalar** (escolha um canal):

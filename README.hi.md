@@ -45,6 +45,11 @@ dsh plugin --profile <name> add dsh-tender-matrix
   <img src="docs/assets/dsh-tender-matrix-flow-v5-light.svg" width="100%" alt="dsh-tender-matrix संरचना: सामग्री parseTable से शीर्षक और पंक्तियों में बदलती है; मैट्रिक्स का प्रत्येक कॉलम उसे पढ़ने वाले नियमों के साथ अंकित है — शीर्षक पर TM-001, seq पर TM-006, maxScore पर TM-003, bidderA पर TM-004, basis पर TM-005 और TM-007, और bidderA सेल पर TM-002 जो 32 > 30 की तुलना करता है; TM-003/TM-004 target सेट न होने से skipped हैं; नीचे issues[] और skipped[] के दो निर्गम, कोई अनुपालन निर्णय नहीं।">
 </picture>
 
+![dsh-tender-matrix का असली टर्मिनल रन](docs/assets/dsh-tender-matrix-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
+
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल** (कोई एक माध्यम चुनें):
