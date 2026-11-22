@@ -11,6 +11,8 @@
 
 निविदा एजेंसी, मूल्यांकन सहायता और आंतरिक समीक्षा के लिए एक DeepSeek Harness जाँचक: एक अंक-मैट्रिक्स (शीर्षक पंक्ति और प्रत्येक मूल्यांकन कारक की एक पंक्ति) पढ़ता है और संस्करणबद्ध नियम-पैक से उसी मैट्रिक्स की अंकगणित और पूर्णता जाँचता है।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [इंस्टॉल](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ dsh plugin --profile <name> add dsh-tender-matrix
 ![dsh-tender-matrix का असली टर्मिनल रन](docs/assets/dsh-tender-matrix-demo.gif)
 
 *इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
-
 
 ## तीन चरणों में शुरुआत
 
@@ -90,7 +91,6 @@ dsh plugin --profile <name> add dsh-tender-matrix
 <summary>एक मिनट का परीक्षण</summary>
 
 नमूना इनपुट `samples/quickstart/input/TM-001-unsafe.json` में, अपेक्षित आउटपुट `samples/quickstart/expected/result.json` में और स्क्रीनशॉट `docs/assets/quickstart.png` में है।
-
 
 </details>
 
@@ -358,7 +358,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # src/shared ताज़ा
 ### समस्या-निवारण
 
 - **इंस्टॉल हो गया पर उपकरण दिखता नहीं**: जाँचें कि `main` `lib/index.mjs` पर जाता है और `pnpm run build` ने उसे बनाया है; गलत `main` से लोडर प्रविष्टि चुपचाप छोड़ देता है।
-- **`dsh plugin add` असंगत बताकर मना करता है**: peer रेंज `0.1.x` और `0.2.x` को कवर करती है; यदि आपका रनटाइम उससे बाहर है, तो स्पष्ट छूट दें: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.15 --dsh-version <runtime> --accept-risk`।
+- **`dsh plugin add` असंगत बताकर मना करता है**: peer रेंज `0.1.x` और `0.2.x` को कवर करती है; यदि आपका रनटाइम उससे बाहर है, तो स्पष्ट छूट दें: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.17 --dsh-version <runtime> --accept-risk`।
 - **कोई नियम नहीं चला**: `skipped` सरणी देखें; वह नियम id और कारण बताती है। `basis` कॉलम न हो तो `TM-005` «लागू नहीं» बताता है।
 - **`check` में `manifest-peers` विफल दिखता है**: स्थिर जाँचक 0.2 पंक्ति से पुरानी हार्ड-कोडेड peer रेंज से तुलना करता है; रनटाइम इंस्टॉल के समय peer संगतता लागू करता है। यह `dsh-plugin-dev` की ज्ञात अपस्ट्रीम समस्या है।
 - **समय खिसका हुआ लगता है**: सारी गणना दिए गए स्ट्रिंग पर दीवार-घड़ी है, समय-क्षेत्र रूपांतरण नहीं।

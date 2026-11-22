@@ -11,6 +11,8 @@
 
 A DeepSeek Harness checker for tender agencies, bid-evaluation support and internal review: it reads one scoring matrix (a package header plus one row per evaluation factor) and checks the matrix's own arithmetic and completeness with a versioned rule pack.
 
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Install](#three-step-setup) · [Configuration](#configuration) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -85,7 +87,6 @@ You can also search for "Tender Compliance Suite" in WorkBuddy / Coze (this chec
 <summary>One-minute trial run</summary>
 
 The sample input is `samples/quickstart/input/TM-001-unsafe.json`, the expected output is `samples/quickstart/expected/result.json`, and the screenshot is `docs/assets/quickstart.png`.
-
 
 </details>
 
@@ -357,7 +358,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # refresh src/shared
 ### Troubleshooting
 
 - **It installs but the tool never appears**: check that `main` resolves to `lib/index.mjs` and that `pnpm run build` produced it; a wrong `main` makes the loader skip the entry silently.
-- **`dsh plugin add` refuses the package as incompatible**: the peer range covers `0.1.x` and `0.2.x`; if your runtime sits outside it, grant an explicit exemption: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.15 --dsh-version <runtime> --accept-risk`.
+- **`dsh plugin add` refuses the package as incompatible**: the peer range covers `0.1.x` and `0.2.x`; if your runtime sits outside it, grant an explicit exemption: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.17 --dsh-version <runtime> --accept-risk`.
 - **A rule did not run**: read the `skipped` array; it names the rule id and the reason. With no `basis` column, `TM-005` reports "not applicable".
 - **`check` reports `manifest-peers` as failed**: the static checker compares against a hard-coded peer range that predates the 0.2 line; the runtime enforces peer compatibility at install time. This is a known upstream issue in `dsh-plugin-dev`.
 - **Times look shifted**: all arithmetic is wall-clock on the input strings, with no time-zone conversion.

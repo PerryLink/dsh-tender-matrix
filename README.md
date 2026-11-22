@@ -11,6 +11,8 @@
 
 面向招标代理、评标辅助与内审的 DeepSeek Harness 核对插件：读取一份评分矩阵（表头加每个评审因素一行），用版本化规则库核对分值上限、合计、评分依据、序号唯一性与模板占位符。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -89,7 +91,6 @@ dsh plugin --profile <name> add dsh-tender-matrix
 <summary>1 分钟试跑</summary>
 
 样例输入在 `samples/quickstart/input/TM-001-unsafe.json`，期望输出在 `samples/quickstart/expected/result.json`；截图见 `docs/assets/quickstart.png`。
-
 
 </details>
 
@@ -351,7 +352,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # 刷新 src/shared
 ### 故障排查
 
 - **插件装上了但工具不出现**：确认 `main` 指向 `lib/index.mjs` 且 `pnpm run build` 已生成；`main` 写错会让加载器静默跳过该条目。
-- **`dsh plugin add` 报版本不兼容**：peer 范围覆盖 `0.1.x` 与 `0.2.x`；若运行时在其之外，可显式豁免：`dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.15 --dsh-version <runtime> --accept-risk`。
+- **`dsh plugin add` 报版本不兼容**：peer 范围覆盖 `0.1.x` 与 `0.2.x`；若运行时在其之外，可显式豁免：`dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.17 --dsh-version <runtime> --accept-risk`。
 - **某条规则没有执行**：查看 `skipped` 数组，其中写明了规则 id 与原因；没有 `basis` 栏时 `TM-005` 报「不适用」。
 - **`check` 报 `manifest-peers` 失败**：静态检查器比对的是一份早于 0.2 世代的硬编码 peer 范围；安装期的 peer 校验以运行时为准。这是 `dsh-plugin-dev` 的已知上游问题。
 - **时间看起来偏移**：全部计算都是对输入字符串做墙上时钟运算，不做时区换算。

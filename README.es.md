@@ -11,6 +11,8 @@
 
 Un verificador de DeepSeek Harness para agencias de licitación, apoyo a la evaluación y revisión interna: lee una matriz de puntuación (cabecera del expediente más una fila por factor de evaluación) y comprueba la aritmética y la integridad de esa propia matriz con un paquete de reglas versionado.
 
+Última verificación: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalación](#instalación-en-tres-pasos) · [Configuración](#configuración) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ Devuelve una lista de qué fila, qué columna y qué difiere, para que la agenci
 ![dsh-tender-matrix: ejecución real de terminal](docs/assets/dsh-tender-matrix-demo.gif)
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
-
 
 ## Instalación en tres pasos
 
@@ -90,7 +91,6 @@ También puede buscar «Tender Compliance Suite» en WorkBuddy / Coze (esta comp
 <summary>Prueba de un minuto</summary>
 
 La entrada del ejemplo está en `samples/quickstart/input/TM-001-unsafe.json`, la salida esperada en `samples/quickstart/expected/result.json` y la captura en `docs/assets/quickstart.png`.
-
 
 </details>
 
@@ -358,7 +358,7 @@ node ../scripts/sync-shared.mjs dsh-tender-matrix   # refrescar src/shared
 ### Solución de problemas
 
 - **Se instala pero la herramienta no aparece**: compruebe que `main` resuelve a `lib/index.mjs` y que `pnpm run build` lo generó; un `main` incorrecto hace que el cargador omita la entrada en silencio.
-- **`dsh plugin add` rechaza el paquete por incompatibilidad**: el rango de peers cubre `0.1.x` y `0.2.x`; si su runtime queda fuera, conceda una exención explícita: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.15 --dsh-version <runtime> --accept-risk`.
+- **`dsh plugin add` rechaza el paquete por incompatibilidad**: el rango de peers cubre `0.1.x` y `0.2.x`; si su runtime queda fuera, conceda una exención explícita: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.17 --dsh-version <runtime> --accept-risk`.
 - **Una regla no se ejecutó**: lea el arreglo `skipped`; indica el id de la regla y el motivo. Sin columna `basis`, `TM-005` informa «no aplicable».
 - **`check` informa `manifest-peers` como fallo**: el verificador estático compara con un rango de peers codificado que es anterior a la línea 0.2; el runtime impone la compatibilidad de peers al instalar. Es un problema conocido de `dsh-plugin-dev`.
 - **Los horarios parecen desplazados**: toda la aritmética es de reloj de pared sobre las cadenas de entrada, sin conversión de zona horaria.

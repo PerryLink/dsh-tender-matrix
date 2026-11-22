@@ -11,6 +11,8 @@
 
 Um verificador do DeepSeek Harness para agências de licitação, apoio à avaliação e revisão interna: lê uma matriz de pontuação (cabeçalho do processo mais uma linha por fator de avaliação) e confere a aritmética e a completude dessa própria matriz com um pacote de regras versionado.
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalação](#instalação-em-três-passos) · [Configuração](#configuração) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ Devolve uma lista de qual linha, qual coluna e o que difere, para a agência de 
 ![dsh-tender-matrix: execução real de terminal](docs/assets/dsh-tender-matrix-demo.gif)
 
 *Repetição animada de uma execução real registrada neste repositório.*
-
 
 ## Instalação em três passos
 
@@ -90,7 +91,6 @@ Também pode procurar «Tender Compliance Suite» no WorkBuddy / Coze (esta veri
 <summary>Teste de um minuto</summary>
 
 A entrada do exemplo está em `samples/quickstart/input/TM-001-unsafe.json`, a saída esperada em `samples/quickstart/expected/result.json` e a captura em `docs/assets/quickstart.png`.
-
 
 </details>
 
@@ -358,7 +358,7 @@ O `prepublishOnly` volta a rodar o portão, então uma publicação não sai com
 ### Solução de problemas
 
 - **Instala mas a ferramenta não aparece**: confirme que `main` resolve para `lib/index.mjs` e que `pnpm run build` o gerou; um `main` errado faz o carregador ignorar a entrada em silêncio.
-- **`dsh plugin add` recusa o pacote por incompatibilidade**: a faixa de peers cobre `0.1.x` e `0.2.x`; se o seu runtime estiver fora dela, conceda uma isenção explícita: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.15 --dsh-version <runtime> --accept-risk`.
+- **`dsh plugin add` recusa o pacote por incompatibilidade**: a faixa de peers cobre `0.1.x` e `0.2.x`; se o seu runtime estiver fora dela, conceda uma isenção explícita: `dsh plugin --profile <name> allow-version dsh-tender-matrix@0.2.17 --dsh-version <runtime> --accept-risk`.
 - **Uma regra não rodou**: leia o arranjo `skipped`; ele indica o id da regra e o motivo. Sem coluna `basis`, `TM-005` reporta «não se aplica».
 - **`check` reporta `manifest-peers` como falha**: o verificador estático compara com uma faixa de peers codificada anterior à linha 0.2; o runtime impõe a compatibilidade de peers na instalação. É um problema conhecido do `dsh-plugin-dev`.
 - **Os horários parecem deslocados**: toda a aritmética é de relógio de parede sobre as cadeias de entrada, sem conversão de fuso horário.
