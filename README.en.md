@@ -7,6 +7,8 @@
 
 # dsh-tender-matrix
 
+Current version `0.2.18`.
+
 **Point out the arithmetic errors in an evaluation-factor scoring matrix before the review meeting — differences only, never the committee's verdict.**
 
 A DeepSeek Harness checker for tender agencies, bid-evaluation support and internal review: it reads one scoring matrix (a package header plus one row per evaluation factor) and checks the matrix's own arithmetic and completeness with a versioned rule pack.
